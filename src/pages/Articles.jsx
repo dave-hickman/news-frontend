@@ -8,7 +8,6 @@ const Articles = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("im here");
     getArticles()
       .then((response) => {
         setArticles(response.data.articles);
