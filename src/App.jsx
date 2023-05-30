@@ -1,8 +1,10 @@
 import { useState } from "react";
-import Nav from "./components/Nav";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Articles from "./pages/Articles";
+import IndividualArticle from "./pages/IndividualArticle";
 
 function App() {
   const [userId, setUserId] = useState("davros");
@@ -11,7 +13,10 @@ function App() {
     <>
       <Nav userId={userId} />
       <Header />
-      <Articles />
+      <Routes>
+        <Route path="/" element={<Articles />} />
+        <Route path="/articles/:article_id" element={<IndividualArticle />} />
+      </Routes>
     </>
   );
 }

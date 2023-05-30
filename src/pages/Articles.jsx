@@ -8,12 +8,13 @@ const Articles = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getArticles()
-      .then((response) => {
-        setArticles(response.data.articles);
-      })
-      .then(setIsLoading(false));
-  }, []);
+    const fetchArticles = async () => {
+    const response = await getArticles();
+    setArticles(response.articles);
+    setIsLoading(false);
+  }
+  
+  fetchArticles()}, []);
 
   if (isLoading === true) {
     return <p>Loading...</p>;
