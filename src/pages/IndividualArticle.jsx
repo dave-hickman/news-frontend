@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSingleArticle } from "../utils";
 import { useParams } from "react-router-dom";
+import Comments from "../components/Comments";
 
 const IndividualArticle = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +32,7 @@ const IndividualArticle = () => {
           alt={`thumbnail for ${article.article[0].title}`}
         />
         <p>{article.article[0].body}</p>
+        <Comments />
       </section>
     );
 };

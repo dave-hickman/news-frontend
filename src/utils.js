@@ -5,13 +5,18 @@ const news = axios.create({
 });
 
 const getArticles = async () => {
-  const response = await news.get("/articles");
-  return response.data
+  const { data } = await news.get("/articles");
+  return data;
 };
 
 const getSingleArticle = async (article_id) => {
-    const response = await news.get(`/articles/${article_id}`)
-    return response.data
-}
+  const { data } = await news.get(`/articles/${article_id}`);
+  return data;
+};
 
-export { getArticles, getSingleArticle };
+const getComments = async (article_id) => {
+  const { data } = await news.get(`/articles/${article_id}/comments`);
+  return data;
+};
+
+export { getArticles, getSingleArticle, getComments };

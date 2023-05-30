@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Comments = (article_id) => {
     //make api call to get comments, map through them and add details into little cards
       const [comments, setComments] = useState([])
