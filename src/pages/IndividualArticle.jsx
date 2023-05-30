@@ -32,7 +32,7 @@ const IndividualArticle = () => {
           alt={`thumbnail for ${article.article[0].title}`}
         />
         <p>{article.article[0].body}</p>
-        <Comments />
+        <Comments article_id={article_id}/>
       </section>
     );
 };

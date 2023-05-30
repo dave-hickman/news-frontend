@@ -1,9 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getComments } from "../utils";
 
-const Comments = (article_id) => {
-    //make api call to get comments, map through them and add details into little cards
+const Comments = ({article_id}) => {
       const [comments, setComments] = useState([])
-    return (
+      const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchComments = async () => {
+            const response = await getComments(article_id)
+            console.log(response.comments)
+            setComments(response.comments)
+            setIsLoading(false)
+        }
+        fetchComments()
+    }, [])
+
+    if (isLoading === true){
+        return <p>Loading...</p>
+    }
+    else return (
       <section>
         {comments.map((comment) => {
           return (
