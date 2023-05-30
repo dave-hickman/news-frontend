@@ -1,0 +1,25 @@
+main{
+    background-color: rgb(36, 36, 36);
+    color: rgb(255, 249, 238);
+    padding: .5em;
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+
+a{
+    text-decoration: none;
+    color:rgb(255, 249, 238)
+}
+
+h2{
+    font-weight: 600;
+    color: rgb(36, 36, 36);
+    text-align: center;
+}
+
+h3{
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: .9rem;
+    font-weight: 400;
+    padding: .2em 0 0;
+}

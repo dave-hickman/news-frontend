@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSingleArticle } from "../utils";
 import { useParams } from "react-router-dom";
+import "../IndividualArticle.css"
 
 const IndividualArticle = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,8 +21,8 @@ const IndividualArticle = () => {
     return <p>Loading...</p>;
   } else
     return (
-      <section>
-        <h2>{article.article[0].title}</h2>
+      <section className="article-container">
+        <h2 className="article-title">{article.article[0].title}</h2>
         <h3>{article.article[0].author}</h3>
         <h4>{article.article[0].topic}</h4>
         <p>Likes:{article.article[0].votes}</p>
