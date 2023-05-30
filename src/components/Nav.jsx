@@ -8,7 +8,7 @@ const Nav = ({ userId }) => {
       <p>Home</p>
       <p>Topics</p>
       </div>
-      <p>User: {userId}</p>
+      <p className="user">User: {userId}</p>
     </nav>
   );
 };

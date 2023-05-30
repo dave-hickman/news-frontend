@@ -25,13 +25,13 @@ const IndividualArticle = () => {
         <h2 className="article-title">{article.article[0].title}</h2>
         <h3>{article.article[0].author}</h3>
         <h4>{article.article[0].topic}</h4>
-        <p>Likes:{article.article[0].votes}</p>
-        <p>Comments:{article.article[0].comment_count}</p>
+        <p className="likes">Likes:{article.article[0].votes}</p>
+        <p className="comments">Comments:{article.article[0].comment_count}</p>
         <img
           src={article.article[0].article_img_url}
           alt={`thumbnail for ${article.article[0].title}`}
         />
-        <p>{article.article[0].body}</p>
+        <p className="article-body">{article.article[0].body}</p>
       </section>
     );
 };
