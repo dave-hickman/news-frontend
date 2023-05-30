@@ -9,4 +9,9 @@ const getArticles = async () => {
   return response.data
 };
 
-export { getArticles };
+const getSingleArticle = async (article_id) => {
+    const response = await news.get(`/articles/${article_id}`)
+    return response.data
+}
+
+export { getArticles, getSingleArticle };
