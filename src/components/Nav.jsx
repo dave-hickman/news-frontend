@@ -1,7 +1,8 @@
 const Nav = ({ userId }) => {
   return (
     <nav>
-      <p>This will be the page links when I have more than one page</p>
+      <p>Home</p>
+      <p>Topics</p>
       <p>User: {userId}</p>
     </nav>
   );
