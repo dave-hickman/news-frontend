@@ -13,9 +13,10 @@ a{
 }
 
 h2{
+    font-size: 2rem;
     font-weight: 600;
     color: rgb(36, 36, 36);
-    text-align: center;
+    /* text-align: center; */
 }
 
 h3{
