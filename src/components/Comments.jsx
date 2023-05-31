@@ -18,8 +18,15 @@ const Comments = ({article_id}) => {
     if (isLoading === true){
         return <p>Loading...</p>
     }
+    else if (isLoading === true && comments.length === 0){
+      return(
+        <section className="comments-section">
+          <p>No comments yet...</p>
+        </section>
+      )
+    }
     else return (
-      <section>
+      <section className="comments-secton">
         {comments.map((comment) => {
           const date = new Date(comment.created_at)
           const formattedDate = date.toLocaleString('en-GB')
