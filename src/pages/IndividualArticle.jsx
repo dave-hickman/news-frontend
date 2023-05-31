@@ -29,6 +29,7 @@ const IndividualArticle = () => {
       const response = await patchArticle(article_id, {inc_votes: num});
       setErrorMessage("")
       if(response.request.status !== 200){
+        setVotes(((currentVotes) => currentVotes - num))
         setErrorMessage("Issue with voting, please try again later")
       }
     };
