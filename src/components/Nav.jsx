@@ -1,8 +1,14 @@
+import "../Nav.css"
+
 const Nav = ({ userId }) => {
   return (
     <nav>
-      <p>This will be the page links when I have more than one page</p>
-      <p>User: {userId}</p>
+      <h1>NEWS!</h1>
+      <div className="links">
+      <p>Home</p>
+      <p>Topics</p>
+      </div>
+      <p className="user">User: {userId}</p>
     </nav>
   );
 };

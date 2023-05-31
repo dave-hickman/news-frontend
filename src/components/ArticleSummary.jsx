@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import "../ArticleSummary.css"
 
 const ArticleSummary = ({ article }) => {
   return (
-    <section>
+    <section className="article-card">
       <Link to={`/articles/${article.article_id}`}>
         <h2>{article.title}</h2>
       </Link>
