@@ -9,15 +9,27 @@ const IndividualArticle = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
+  const [votes, setVotes] = useState(0)
 
   useEffect(() => {
     const fetchSingleArticle = async () => {
       const response = await getSingleArticle(article_id);
       setArticle(response);
       setIsLoading(false);
+      setVotes(response.article[0].votes)
     };
     fetchSingleArticle();
   }, []);
+
+  const handleVote = (num) => {
+    setVotes((currentVotes) => currentVotes + num)
+    const sendVotes = async () => {
+      const response = await patchArticle(article_id, {inc_votes: num});
+      console.log(response)
+    };
+    sendVotes();
+
+  }
 
   if (isLoading === true) {
     return <p>Loading...</p>;
@@ -26,9 +38,9 @@ const IndividualArticle = () => {
       <section className="article-container">
         <h2 className="article-title">{article.article[0].title}</h2>
         <h3 className="author">{article.article[0].author}</h3>
-        <button>Vote Up</button>
-        <button>Vote Down</button>
-        <h3 className="likes">Likes: {article.article[0].votes}</h3>
+        <button onClick={() => handleVote(1)}>Vote Up</button>
+        <button onClick={() => handleVote(-1)}>Vote Down</button>
+        <h3 className="likes">Votes: {votes}</h3>
         <img
           src={article.article[0].article_img_url}
           alt={`thumbnail for ${article.article[0].title}`}
