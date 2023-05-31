@@ -29,4 +29,14 @@ const patchArticle = async (article_id, vote) => {
   }
 };
 
-export { getArticles, getSingleArticle, getComments, patchArticle };
+const getTopics = async () => {
+  try {
+    const { data } = await news.get(`/topics`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export { getArticles, getSingleArticle, getComments, patchArticle, getTopics };

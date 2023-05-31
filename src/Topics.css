@@ -1,0 +1,8 @@
+header{
+    display: flex;
+    justify-content: center;
+}
+
+.topics-title {
+  color: rgb(255, 249, 238);
+}
