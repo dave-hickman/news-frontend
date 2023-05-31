@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { getSingleArticle } from "../utils";
 import { useParams } from "react-router-dom";
-import "../IndividualArticle.css";
+import Comments from "../components/Comments";
+
 
 const IndividualArticle = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,6 +41,7 @@ const IndividualArticle = () => {
           </div>
         </div>
         <p className="article-body">{article.article[0].body}</p>
+        <Comments article_id={article_id}/>
       </section>
     );
 };
