@@ -32,7 +32,7 @@ const Comments = ({article_id}) => {
           const formattedDate = date.toLocaleString('en-GB')
         
           return (
-            <article>
+            <article key={comment.comment_id}>
               <p>{comment.author}</p>
               <p>{formattedDate}</p>
               <p>Likes:{comment.votes}</p>

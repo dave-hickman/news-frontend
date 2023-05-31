@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getSingleArticle } from "../utils";
 import { useParams } from "react-router-dom";
 import Comments from "../components/Comments";
+import '../IndividualArticle.css'
 
 
 const IndividualArticle = () => {
