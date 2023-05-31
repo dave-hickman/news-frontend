@@ -20,8 +20,13 @@ const getComments = async (article_id) => {
 };
 
 const patchArticle = async (article_id, vote) => {
-  const {data} = await news.patch(`/articles/${article_id}`, vote)
-  return data
-}
+  try {
+    const { data } = await news.patch(`/articles/${article_id}`, vote);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
 
 export { getArticles, getSingleArticle, getComments, patchArticle };

@@ -10,6 +10,8 @@ const IndividualArticle = () => {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
   const [votes, setVotes] = useState(0)
+  const [errorMessage, setErrorMessage] = useState("")
+
 
   useEffect(() => {
     const fetchSingleArticle = async () => {
@@ -25,7 +27,10 @@ const IndividualArticle = () => {
     setVotes((currentVotes) => currentVotes + num)
     const sendVotes = async () => {
       const response = await patchArticle(article_id, {inc_votes: num});
-      console.log(response)
+      setErrorMessage("")
+      if(response.request.status !== 200){
+        setErrorMessage("Issue with voting, please try again later")
+      }
     };
     sendVotes();
 
@@ -41,6 +46,7 @@ const IndividualArticle = () => {
         <button onClick={() => handleVote(1)}>Vote Up</button>
         <button onClick={() => handleVote(-1)}>Vote Down</button>
         <h3 className="likes">Votes: {votes}</h3>
+        <h3 className="likes">{errorMessage}</h3>
         <img
           src={article.article[0].article_img_url}
           alt={`thumbnail for ${article.article[0].title}`}
