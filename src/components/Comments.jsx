@@ -8,23 +8,26 @@ const Comments = ({article_id}) => {
     useEffect(() => {
         const fetchComments = async () => {
             const response = await getComments(article_id)
-            console.log(response.comments)
             setComments(response.comments)
             setIsLoading(false)
         }
         fetchComments()
     }, [])
 
+    
     if (isLoading === true){
         return <p>Loading...</p>
     }
     else return (
       <section>
         {comments.map((comment) => {
+          const date = new Date(comment.created_at)
+          const formattedDate = date.toLocaleString('en-GB')
+        
           return (
             <article>
               <p>{comment.author}</p>
-              <p>{comment.created_at}</p>
+              <p>{formattedDate}</p>
               <p>Likes:{comment.votes}</p>
               <p>{comment.body}</p>
             </article>
