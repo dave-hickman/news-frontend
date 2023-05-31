@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSingleArticle } from "../utils";
+import { getSingleArticle, patchArticle } from "../utils";
 import { useParams } from "react-router-dom";
 import Comments from "../components/Comments";
 import '../IndividualArticle.css'
@@ -26,6 +26,9 @@ const IndividualArticle = () => {
       <section className="article-container">
         <h2 className="article-title">{article.article[0].title}</h2>
         <h3 className="author">{article.article[0].author}</h3>
+        <button>Vote Up</button>
+        <button>Vote Down</button>
+        <h3 className="likes">Likes: {article.article[0].votes}</h3>
         <img
           src={article.article[0].article_img_url}
           alt={`thumbnail for ${article.article[0].title}`}
@@ -35,7 +38,6 @@ const IndividualArticle = () => {
             <h3 className="topic-text">Topic: {article.article[0].topic}</h3>
           </div>
           <div className="likes-comments">
-          <h3 className="likes">Likes: {article.article[0].votes}</h3>
           <h3 className="comments">
             Comments: {article.article[0].comment_count}
           </h3>

@@ -19,4 +19,9 @@ const getComments = async (article_id) => {
   return data;
 };
 
-export { getArticles, getSingleArticle, getComments };
+const patchArticle = async (article_id, vote) => {
+  const {data} = await news.patch(`/articles/${article_id}`, vote)
+  return data
+}
+
+export { getArticles, getSingleArticle, getComments, patchArticle };
