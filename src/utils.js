@@ -19,4 +19,9 @@ const getComments = async (article_id) => {
   return data;
 };
 
-export { getArticles, getSingleArticle, getComments };
+const postComment = async(article_id, comment) => {
+  const {data} = await news.post(`/articles/${article_id}/comments`, comment);
+  return data
+}
+
+export { getArticles, getSingleArticle, getComments, postComment };
