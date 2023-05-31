@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getComments } from "../utils";
+import '../Comments.css'
 
 const Comments = ({article_id}) => {
       const [comments, setComments] = useState([])
@@ -26,21 +27,20 @@ const Comments = ({article_id}) => {
       )
     }
     else return (
-      <section className="comments-secton">
+      <section className="comments-section">
         {comments.map((comment) => {
           const date = new Date(comment.created_at)
           const formattedDate = date.toLocaleString('en-GB')
         
           return (
-            <article key={comment.comment_id}>
-              <p>{comment.author}</p>
-              <p>{formattedDate}</p>
-              <p>Likes:{comment.votes}</p>
-              <p>{comment.body}</p>
+            <article className="comment-card" key={comment.comment_id}>
+              <p className="comment-author">{comment.author}</p>
+              <p className="comment-text">{formattedDate}</p>
+              <p className="comment-text">Likes:{comment.votes}</p>
+              <p className="comment-text">{comment.body}</p>
             </article>
           );
         })}
-        <p>This is the comment list</p>
       </section>
     );
   };
