@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getComments, postComment } from "../utils";
+import { getComments, postComment, deleteComments } from "../utils";
 import "../Comments.css";
 
 const Comments = ({ article_id, userId }) => {
@@ -9,6 +9,9 @@ const Comments = ({ article_id, userId }) => {
   const [inputError, setInputError] = useState("");
   const [submitStatus, setSubmitStatus] = useState("");
   const [formDisabled, setFormDisabled] = useState(false);
+  const [correctUser, setCorrectUser] = useState("")
+  const [deleteError, setDeleteError] = useState("")
+  const [deleteConfirmation, setDeleteConfirmation] = useState("")
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -40,6 +43,21 @@ const Comments = ({ article_id, userId }) => {
     setFormDisabled(false);
     return response.data.comment;
   };
+
+  const handleDelete = async (e) => {
+    const response = await deleteComments(e.target.value)
+    if(response.request.status !== 204){
+      setDeleteError("Issue with deleting comments, please try again later")
+    }
+    else{
+      setComments((currentComments) => {
+        setDeleteConfirmation("Comment deleted")
+        const commentsCopy = [...currentComments];
+        commentsCopy.shift()
+        return commentsCopy
+      }) 
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -95,9 +113,11 @@ const Comments = ({ article_id, userId }) => {
             <p>{submitStatus}</p>
           </form>
         </article>
+        <p>{deleteConfirmation}</p>
         {comments.map((comment) => {
           const date = new Date(comment.created_at);
           const formattedDate = date.toLocaleString("en-GB");
+          const incorrectUser = comment.author !== userId
 
           return (
             <article className="comment-card" key={comment.comment_id}>
@@ -105,6 +125,8 @@ const Comments = ({ article_id, userId }) => {
               <p className="comment-text">{formattedDate}</p>
               <p className="comment-text">Likes:{comment.votes}</p>
               <p className="comment-text">{comment.body}</p>
+              <button value={comment.comment_id} onClick={handleDelete} disabled={incorrectUser}>Delete Comment</button>
+              <p>{deleteError}</p>
             </article>
           );
         })}
