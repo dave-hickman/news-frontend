@@ -6,7 +6,7 @@ import Articles from "./pages/Articles";
 import IndividualArticle from "./pages/IndividualArticle";
 
 function App() {
-  const [userId, setUserId] = useState("davros");
+  const [userId, setUserId] = useState("grumpy19");
 
   return (
     <>
@@ -14,7 +14,7 @@ function App() {
       <main>
       <Routes>
         <Route path="/" element={<Articles />} />
-        <Route path="/articles/:article_id" element={<IndividualArticle />} />
+        <Route path="/articles/:article_id" element={<IndividualArticle userId={userId}/>} />
       </Routes>
       </main>
     </>

@@ -24,7 +24,7 @@ const Articles = () => {
       <main>
         <Sort />
         {articles.map((article) => {
-          return <ArticleSummary article={article} />;
+          return <ArticleSummary key={article.title} article={article} />;
         })}
       </main>
     );
