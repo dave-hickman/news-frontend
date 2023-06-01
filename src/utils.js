@@ -4,10 +4,9 @@ const news = axios.create({
   baseURL: "https://news-project-g3uj.onrender.com/api",
 });
 
-const getArticles = async (sort, ascDesc) => {
-  console.log(typeof sort)
+const getArticles = async (queryString) => {
 
-  const { data } = await news.get(`/articles?sort_by=${sort}&order=${ascDesc}`);
+  const { data } = await news.get(`/articles${queryString}`);
   return data;
 };
 

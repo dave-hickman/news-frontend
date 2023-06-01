@@ -6,14 +6,15 @@ import Articles from "./pages/Articles";
 import IndividualArticle from "./pages/IndividualArticle";
 
 function App() {
-  const [userId, setUserId] = useState("grumpy19");
+  const [userId, setUserId] = useState("grumpy19")
+  const [queryString, setQueryString] = useState("");
 
   return (
     <>
       <Nav userId={userId} />
       <main>
       <Routes>
-        <Route path="/" element={<Articles />} />
+        <Route path={`/`} element={<Articles setQueryString={setQueryString} queryString={queryString}/>} />
         <Route path="/articles/:article_id" element={<IndividualArticle userId={userId}/>} />
       </Routes>
       </main>
