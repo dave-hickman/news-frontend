@@ -39,4 +39,14 @@ const getTopics = async () => {
   }
 };
 
+const getArticlesByTopic = async (topic) => {
+  try {
+    const { data } = await news.get(`/articles?topic=${topic}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 export { getArticles, getSingleArticle, getComments, patchArticle, getTopics };
