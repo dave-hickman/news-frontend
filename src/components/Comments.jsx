@@ -26,7 +26,7 @@ const Comments = ({ article_id, userId }) => {
   const addComment = async () => {
     const newPost = { username: userId, body: newComment };
     const response = await postComment(article_id, newPost);
-    console.log(response)
+    console.log(response);
     if (response.request.status !== 201) {
       setComments((currentComments) => {
         const commentsCopy = [...currentComments];
