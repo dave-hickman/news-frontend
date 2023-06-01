@@ -28,14 +28,15 @@ const Articles = ({setQueryString, queryString}) => {
 
 
   useEffect(() => {
-    const fetchArticles = async () => {
     queryStringBuilder()
+    setSearchParams(queryString)
+    const fetchArticles = async () => {
     const response = await getArticles(queryString);
     setArticles(response.articles);
     setIsLoading(false);
   }
   
-  fetchArticles()}, [sort, ascDesc]);
+  fetchArticles()}, [sort, ascDesc, queryString]);
 
   if (isLoading === true) {
     return <p>Loading...</p>;
