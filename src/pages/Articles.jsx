@@ -7,6 +7,10 @@ import "../Articles.css"
 const Articles = () => {
   const [articles, setArticles] = useState([{}]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sort, setSort] = useState("")
+  const [ascDesc, setAscDesc] = useState("")
+  console.log(sort)
+  console.log(ascDesc)
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -22,7 +26,7 @@ const Articles = () => {
   } else {
     return (
       <main>
-        <Sort />
+        <Sort setSort={setSort} setAscDesc={setAscDesc}/>
         {articles.map((article) => {
           return <ArticleSummary key={article.title} article={article} />;
         })}
