@@ -26,7 +26,6 @@ const Comments = ({ article_id, userId }) => {
   const addComment = async () => {
     const newPost = { username: userId, body: newComment };
     const response = await postComment(article_id, newPost);
-    console.log(response);
     if (response.request.status !== 201) {
       setComments((currentComments) => {
         const commentsCopy = [...currentComments];
@@ -39,6 +38,7 @@ const Comments = ({ article_id, userId }) => {
     }
     setNewComment("");
     setFormDisabled(false);
+    return response.data.comment;
   };
 
   const handleSubmit = (event) => {
@@ -53,24 +53,24 @@ const Comments = ({ article_id, userId }) => {
       setInputError("Please input some text to make a comment");
       setFormDisabled(false);
     } else {
-      const now = new Date().toISOString();
-      setComments((currentComments) => {
-        return [
-          {
-            comment_id: 1000,
-            author: userId,
-            created_at: now,
-            votes: 0,
-            body: newComment,
-          },
-          ...currentComments,
-        ];
+      addComment().then((response) => {
+        setComments((currentComments) => {
+          return [
+            {
+              comment_id: response[0].comment_id,
+              author: response[0].author,
+              created_at: response[0].created_at,
+              votes: response[0].votes,
+              body: response[0].body,
+            },
+            ...currentComments,
+          ];
+        });
       });
-      addComment();
     }
   };
 
-  if (isLoading === true) {
+  if (isLoading) {
     return <p>Loading...</p>;
   } else if (isLoading === true && comments.length === 0) {
     return (
