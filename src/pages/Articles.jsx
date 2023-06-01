@@ -9,17 +9,15 @@ const Articles = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [sort, setSort] = useState("")
   const [ascDesc, setAscDesc] = useState("")
-  console.log(sort)
-  console.log(ascDesc)
 
   useEffect(() => {
     const fetchArticles = async () => {
-    const response = await getArticles();
+    const response = await getArticles(sort, ascDesc);
     setArticles(response.articles);
     setIsLoading(false);
   }
   
-  fetchArticles()}, []);
+  fetchArticles()}, [sort, ascDesc]);
 
   if (isLoading === true) {
     return <p>Loading...</p>;
