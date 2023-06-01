@@ -8,7 +8,7 @@ const Comments = ({ article_id, userId }) => {
   const [newComment, setNewComment] = useState("");
   const [inputError, setInputError] = useState("");
   const [submitStatus, setSubmitStatus] = useState("");
-  const [formDisabled, setFormDisabled] = useState(false)
+  const [formDisabled, setFormDisabled] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -24,34 +24,34 @@ const Comments = ({ article_id, userId }) => {
   };
 
   const addComment = async () => {
-    const response = await postComment(article_id, newPost)
+    const newPost = { username: userId, body: newComment };
+    const response = await postComment(article_id, newPost);
+    console.log(response)
     if (response.request.status !== 201) {
       setComments((currentComments) => {
         const commentsCopy = [...currentComments];
         commentsCopy.shift();
         return commentsCopy;
       });
-      setSubmitStatus(
-        "Issue with posting comments, please try again later"
-      )
-      setFormDisabled(false);
+      setSubmitStatus("Issue with posting comments, please try again later");
     } else {
-      console.log("im here")
-      setSubmitStatus("Comment successfully posted")}
-      setFormDisabled(false)
+      setSubmitStatus("Comment successfully posted");
+    }
+    setNewComment("");
+    setFormDisabled(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormDisabled(true)
+    setFormDisabled(true);
     setInputError("");
     setSubmitStatus("");
-    const newPost={username: userId, body: newComment}
-    setNewComment("")
     if (userId === "") {
       setInputError("Please sign in to make a comment");
+      setFormDisabled(false);
     } else if (newComment === "") {
       setInputError("Please input some text to make a comment");
+      setFormDisabled(false);
     } else {
       const now = new Date().toISOString();
       setComments((currentComments) => {
@@ -83,8 +83,13 @@ const Comments = ({ article_id, userId }) => {
       <section className="comments-section">
         <article className="comment-card">
           <h3>Post a comment:</h3>
-          <form onSubmit={handleSubmit} >
-            <textarea onChange={handleChange} placeholder="New comment" value={newComment} disabled={formDisabled}></textarea>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              onChange={handleChange}
+              placeholder="New comment"
+              value={newComment}
+              disabled={formDisabled}
+            ></textarea>
             <p>{inputError}</p>
             <button disabled={formDisabled}>Submit</button>
             <p>{submitStatus}</p>

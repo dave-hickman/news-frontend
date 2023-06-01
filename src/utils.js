@@ -30,8 +30,9 @@ const patchArticle = async (article_id, vote) => {
 };
 
 const postComment = async(article_id, comment) => {
-  try{const {data} = await news.post(`/articles/${article_id}/comments`, comment);
-  return data
+  console.log(article_id, comment)
+  try{const response = await news.post(`/articles/${article_id}/comments`, comment);
+  return response
 } catch(error) {
   console.log(error);
   return error;
