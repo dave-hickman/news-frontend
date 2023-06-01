@@ -8,6 +8,7 @@ const Comments = ({ article_id, userId }) => {
   const [newComment, setNewComment] = useState("");
   const [inputError, setInputError] = useState("");
   const [submitStatus, setSubmitStatus] = useState("");
+  const [formDisabled, setFormDisabled] = useState(false)
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -22,10 +23,31 @@ const Comments = ({ article_id, userId }) => {
     setNewComment(e.target.value);
   };
 
+  const addComment = async () => {
+    const response = await postComment(article_id, newPost)
+    if (response.request.status !== 201) {
+      setComments((currentComments) => {
+        const commentsCopy = [...currentComments];
+        commentsCopy.shift();
+        return commentsCopy;
+      });
+      setSubmitStatus(
+        "Issue with posting comments, please try again later"
+      )
+      setFormDisabled(false);
+    } else {
+      console.log("im here")
+      setSubmitStatus("Comment successfully posted")}
+      setFormDisabled(false)
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setFormDisabled(true)
     setInputError("");
     setSubmitStatus("");
+    const newPost={username: userId, body: newComment}
+    setNewComment("")
     if (userId === "") {
       setInputError("Please sign in to make a comment");
     } else if (newComment === "") {
@@ -44,22 +66,6 @@ const Comments = ({ article_id, userId }) => {
           ...currentComments,
         ];
       });
-      const addComment = async () => {
-        const response = await postComment(article_id, {
-          username: userId,
-          body: newComment,
-        });
-        if (response.request.status !== 201) {
-          setComments((currentComments) => {
-            const commentsCopy = [...currentComments];
-            commentsCopy.shift();
-            return commentsCopy;
-          });
-          setSubmitStatus(
-            "Issue with posting comments, please try again later"
-          );
-        } else setSubmitStatus("Comment successfully posted");
-      };
       addComment();
     }
   };
@@ -77,10 +83,10 @@ const Comments = ({ article_id, userId }) => {
       <section className="comments-section">
         <article className="comment-card">
           <h3>Post a comment:</h3>
-          <form onSubmit={handleSubmit}>
-            <input onChange={handleChange} placeholder="New comment"></input>
+          <form onSubmit={handleSubmit} >
+            <textarea onChange={handleChange} placeholder="New comment" value={newComment} disabled={formDisabled}></textarea>
             <p>{inputError}</p>
-            <button>Submit</button>
+            <button disabled={formDisabled}>Submit</button>
             <p>{submitStatus}</p>
           </form>
         </article>
