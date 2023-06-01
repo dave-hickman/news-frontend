@@ -38,4 +38,24 @@ const postComment = async(article_id, comment) => {
 }
 }
 
-export { getArticles, getSingleArticle, getComments, patchArticle, postComment };
+const getTopics = async () => {
+  try {
+    const response = await news.get(`/topics`);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+const getArticlesByTopic = async (topic) => {
+  try {
+    const { data } = await news.get(`/articles?topic=${topic}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export { getArticles, getSingleArticle, getComments, patchArticle, postComment, getTopics, getArticlesByTopic };
