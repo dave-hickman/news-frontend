@@ -9,13 +9,17 @@ const Topics = () => {
   useEffect(() => {
     const fetchTopics = async () => {
       const response = await getTopics();
-      setTopics(response.topics);
-      setIsLoading(false);
+      if (response.request.status !== 200) {
+        return(<p>Issue retrieving topics, please try again later!</p>)
+      }
+      else{
+      setTopics(response.data.topics);
+      setIsLoading(false);}
     };
     fetchTopics();
   }, []);
 
-  if (isLoading === true) {
+  if (isLoading) {
     return <p>Loading...</p>;
   } else
     return (

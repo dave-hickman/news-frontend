@@ -40,8 +40,8 @@ const postComment = async(article_id, comment) => {
 
 const getTopics = async () => {
   try {
-    const { data } = await news.get(`/topics`);
-    return data;
+    const response = await news.get(`/topics`);
+    return response;
   } catch (error) {
     console.log(error);
     return error;
