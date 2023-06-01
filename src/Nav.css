@@ -17,3 +17,7 @@ nav{
 p{
     font-size: .8rem;
 }
+
+.nav-headers{
+    color: rgb(36, 36, 36);
+}
