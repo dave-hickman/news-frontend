@@ -49,4 +49,4 @@ const getArticlesByTopic = async (topic) => {
   }
 };
 
-export { getArticles, getSingleArticle, getComments, patchArticle, getTopics };
+export { getArticles, getSingleArticle, getComments, patchArticle, getTopics, getArticlesByTopic };
