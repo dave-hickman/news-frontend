@@ -29,8 +29,8 @@ const IndividualTopics = () => {
             const formattedDate = date.toLocaleString('en-GB')
           return (
             <Link key={article.article_id} to={`/articles/${article.article_id}`}>
-              <article className="article-container">
-                <h3 className="article-title">{article.title}</h3>
+              <article className="topic-article-container">
+                <h3 className="topic-article-title">{article.title}</h3>
                 <h4>By: {article.author}</h4>
                 <h4>{formattedDate}</h4>
                 <img src={article.article_img_url} />
