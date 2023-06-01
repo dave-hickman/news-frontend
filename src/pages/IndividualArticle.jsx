@@ -6,7 +6,7 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import "../IndividualArticle.css";
 
-const IndividualArticle = () => {
+const IndividualArticle = ({userId}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
@@ -72,7 +72,8 @@ const IndividualArticle = () => {
           </div>
         </div>
         <p className="article-body">{article.article[0].body}</p>
-        <Comments article_id={article_id} />
+        <Comments article_id={article_id} userId={userId}/>
+
       </section>
     );
 };

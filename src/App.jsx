@@ -8,7 +8,7 @@ import Topics from "./pages/Topics";
 import IndividualTopics from "./pages/IndividualTopics";
 
 function App() {
-  const [userId, setUserId] = useState("davros");
+  const [userId, setUserId] = useState("grumpy19");
 
   return (
     <>
@@ -16,7 +16,7 @@ function App() {
       <main>
       <Routes>
         <Route path="/" element={<Articles />} />
-        <Route path="/articles/:article_id" element={<IndividualArticle />} />
+        <Route path="/articles/:article_id" element={<IndividualArticle userId={userId}/>} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<IndividualTopics/>} />
       </Routes>

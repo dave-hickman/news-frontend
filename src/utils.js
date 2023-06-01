@@ -29,6 +29,15 @@ const patchArticle = async (article_id, vote) => {
   }
 };
 
+const postComment = async(article_id, comment) => {
+  try{const response = await news.post(`/articles/${article_id}/comments`, comment);
+  return response
+} catch(error) {
+  console.log(error);
+  return error;
+}
+}
+
 const getTopics = async () => {
   try {
     const { data } = await news.get(`/topics`);
@@ -49,4 +58,4 @@ const getArticlesByTopic = async (topic) => {
   }
 };
 
-export { getArticles, getSingleArticle, getComments, patchArticle, getTopics, getArticlesByTopic };
+export { getArticles, getSingleArticle, getComments, patchArticle, postComment, getTopics, getArticlesByTopic };
