@@ -10,8 +10,13 @@ const getArticles = async () => {
 };
 
 const getSingleArticle = async (article_id) => {
-  const { data } = await news.get(`/articles/${article_id}`);
-  return data;
+  try {
+    const response = await news.get(`/articles/${article_id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };
 
 const getComments = async (article_id) => {
@@ -29,14 +34,18 @@ const patchArticle = async (article_id, vote) => {
   }
 };
 
-const postComment = async(article_id, comment) => {
-  try{const response = await news.post(`/articles/${article_id}/comments`, comment);
-  return response
-} catch(error) {
-  console.log(error);
-  return error;
-}
-}
+const postComment = async (article_id, comment) => {
+  try {
+    const response = await news.post(
+      `/articles/${article_id}/comments`,
+      comment
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
 
 const getTopics = async () => {
   try {
@@ -58,4 +67,12 @@ const getArticlesByTopic = async (topic) => {
   }
 };
 
-export { getArticles, getSingleArticle, getComments, patchArticle, postComment, getTopics, getArticlesByTopic };
+export {
+  getArticles,
+  getSingleArticle,
+  getComments,
+  patchArticle,
+  postComment,
+  getTopics,
+  getArticlesByTopic,
+};

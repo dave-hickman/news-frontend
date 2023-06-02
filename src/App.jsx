@@ -6,6 +6,7 @@ import Articles from "./pages/Articles";
 import IndividualArticle from "./pages/IndividualArticle";
 import Topics from "./pages/Topics";
 import IndividualTopics from "./pages/IndividualTopics";
+import PageCannotBeFound from "./pages/PageCannotBeFound";
 
 function App() {
   const [userId, setUserId] = useState("grumpy19");
@@ -16,6 +17,7 @@ function App() {
       <main>
       <Routes>
         <Route path="/" element={<Articles />} />
+        <Route path="/*" element={<PageCannotBeFound />} />
         <Route path="/articles/:article_id" element={<IndividualArticle userId={userId}/>} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<IndividualTopics/>} />

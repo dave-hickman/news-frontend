@@ -12,6 +12,7 @@ const IndividualArticle = ({userId}) => {
   const { article_id } = useParams();
   const [votes, setVotes] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+  const [articleError, setArticleError] = useState("")
 
   useEffect(() => {
     const fetchSingleArticle = async () => {
@@ -41,6 +42,7 @@ const IndividualArticle = ({userId}) => {
   } else
     return (
       <section className="article-container">
+        <h2>No article found</h2>
         <h2 className="article-title">{article.article[0].title}</h2>
         <div className="author-and-votes-container">
           <h3 className="author">{article.article[0].author}</h3>
