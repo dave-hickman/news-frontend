@@ -9,7 +9,6 @@ const Comments = ({ article_id, userId }) => {
   const [inputError, setInputError] = useState("");
   const [submitStatus, setSubmitStatus] = useState("");
   const [formDisabled, setFormDisabled] = useState(false);
-  const [correctUser, setCorrectUser] = useState("")
   const [deleteError, setDeleteError] = useState("")
   const [deleteConfirmation, setDeleteConfirmation] = useState("")
 
@@ -45,6 +44,7 @@ const Comments = ({ article_id, userId }) => {
   };
 
   const handleDelete = async (e) => {
+    
     const response = await deleteComments(e.target.value)
     if(response.request.status !== 204){
       setDeleteError("Issue with deleting comments, please try again later")
