@@ -5,12 +5,9 @@ import Sort from "../components/Sort";
 import { getArticles } from "../utils/api";
 import "../Articles.css";
 
-const Articles = () => {
-  const [articles, setArticles] = useState([{}]);
+const Articles = ({queryString, setQueryString, setSort, sort, setAscDesc, ascDesc}) => {
+  const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [sort, setSort] = useState("created_at");
-  const [ascDesc, setAscDesc] = useState("desc");
-  const [queryString, setQueryString] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
 
   const queryStringBuilder = () => {
@@ -47,7 +44,7 @@ const Articles = () => {
       <main>
         <Sort setSort={setSort} setAscDesc={setAscDesc} />
         {articles.map((article) => {
-          return <ArticleSummary key={article.title} article={article} />;
+          return <ArticleSummary key={article.article_id} article={article} />;
         })}
       </main>
     );

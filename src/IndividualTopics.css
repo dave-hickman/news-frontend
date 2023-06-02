@@ -29,3 +29,9 @@
     font-weight: 600;
     color: black;
 }
+
+.sort-container{
+    width: 100%;
+    margin: .2rem;
+    height: 20px;
+}

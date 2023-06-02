@@ -16,7 +16,6 @@ const Sort = ({ setSort, setAscDesc }) => {
         <option value="created_at">Date</option>
         <option value="comment_count">Comment Count</option>
         <option value="votes">Votes</option>
-        <option value="topic">Topic</option>
       </select>
       <select className="order" onChange={handleOrderChange}>
         <option>Order by</option>

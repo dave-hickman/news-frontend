@@ -1,5 +1,6 @@
 import "../TopicSummary.css";
 import {Link} from "react-router-dom"
+import Sort from "./Sort";
 
 const TopicSummary = ({ topics }) => {
   return (
