@@ -53,7 +53,6 @@ const Comments = ({ article_id, userId }) => {
     } else {
       setComments((currentComments) => {
         setDeleteConfirmation("Comment deleted");
-        console.log(currentComments)
         const isDeletedComment = (element) => element.comment_id === Number(e.target.value)
         const deletedIndex = currentComments.findIndex(isDeletedComment)
         const commentsCopy = [...currentComments];
