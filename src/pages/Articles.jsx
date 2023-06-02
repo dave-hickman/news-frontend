@@ -23,7 +23,9 @@ const Articles = () => {
     } else setQueryString("");
   };
 
+  
   useEffect(() => {
+    setSearchParams(queryString);
     const fetchArticles = async () => {
       const response = await getArticles(queryString);
       setArticles(response.articles);
@@ -35,7 +37,6 @@ const Articles = () => {
 
   useEffect(() => {
     queryStringBuilder();
-    setSearchParams(queryString);
   }, [sort, ascDesc]);
 
   if (isLoading) {
