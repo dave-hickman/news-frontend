@@ -17,8 +17,8 @@ const IndividualArticle = ({ userId }) => {
   useEffect(() => {
     const fetchSingleArticle = async () => {
       const response = await getSingleArticle(article_id);
-      console.log(response.response.status)
-      if (response.response.status === 404) {
+      console.log(response)
+      if (response.request.status === 404) {
         setIsLoading(false)
         setArticleError("Article not found");
       } else {

@@ -59,8 +59,8 @@ const getTopics = async () => {
 
 const getArticlesByTopic = async (topic) => {
   try {
-    const { data } = await news.get(`/articles?topic=${topic}`);
-    return data;
+    const response = await news.get(`/articles?topic=${topic}`);
+    return response;
   } catch (error) {
     console.log(error);
     return error;
