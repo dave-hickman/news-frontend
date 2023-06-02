@@ -9,14 +9,13 @@ import IndividualTopics from "./pages/IndividualTopics";
 
 function App() {
   const [userId, setUserId] = useState("grumpy19")
-  const [queryString, setQueryString] = useState("");
 
   return (
     <>
       <Nav userId={userId} />
       <main>
       <Routes>
-        <Route path={`/`} element={<Articles setQueryString={setQueryString} queryString={queryString}/>} />
+        <Route path={`/`} element={<Articles />} />
         <Route path="/articles/:article_id" element={<IndividualArticle userId={userId}/>} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<IndividualTopics/>} />

@@ -5,11 +5,12 @@ import Sort from "../components/Sort";
 import { getArticles } from "../utils";
 import "../Articles.css"
 
-const Articles = ({setQueryString, queryString}) => {
+const Articles = () => {
   const [articles, setArticles] = useState([{}]);
   const [isLoading, setIsLoading] = useState(true);
   const [sort, setSort] = useState("")
   const [ascDesc, setAscDesc] = useState("")
+  const [queryString, setQueryString] = useState("");
   let [searchParams, setSearchParams] = useSearchParams()
   
 
