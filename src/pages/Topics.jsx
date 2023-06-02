@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getTopics } from "../utils";
+import { getTopics } from "../utils/api";
 import TopicSummary from "../components/TopicSummary";
 
 const Topics = () => {
@@ -10,11 +10,11 @@ const Topics = () => {
     const fetchTopics = async () => {
       const response = await getTopics();
       if (response.request.status !== 200) {
-        return(<p>Issue retrieving topics, please try again later!</p>)
+        return <p>Issue retrieving topics, please try again later!</p>;
+      } else {
+        setTopics(response.data.topics);
+        setIsLoading(false);
       }
-      else{
-      setTopics(response.data.topics);
-      setIsLoading(false);}
     };
     fetchTopics();
   }, []);
@@ -24,7 +24,7 @@ const Topics = () => {
   } else
     return (
       <>
-       <TopicSummary topics={topics}/>
+        <TopicSummary topics={topics} />
       </>
     );
 };

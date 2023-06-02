@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getSingleArticle, patchArticle } from "../utils";
+import { getSingleArticle, patchArticle } from "../utils/api";
 import { useParams } from "react-router-dom";
 import Comments from "../components/Comments";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import "../IndividualArticle.css";
 
-const IndividualArticle = ({userId}) => {
+const IndividualArticle = ({ userId }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
@@ -45,14 +45,24 @@ const IndividualArticle = ({userId}) => {
         <div className="author-and-votes-container">
           <h3 className="author">{article.article[0].author}</h3>
           <div className="votes-container">
-            <button aria-label="Upvote this post" className="vote-button vote-up" onClick={() => handleVote(1)}>
+            <button
+              aria-label="Upvote this post"
+              className="vote-button vote-up"
+              onClick={() => handleVote(1)}
+            >
               <ThumbUpOffAltIcon className="thumbs" />
             </button>
-            <button aria-label="Downvote this post" className="vote-button" onClick={() => handleVote(-1)}>
+            <button
+              aria-label="Downvote this post"
+              className="vote-button"
+              onClick={() => handleVote(-1)}
+            >
               <ThumbDownOffAltIcon className="thumbs" />
             </button>
             <div className="vote-number-container">
-              <h3 aria-label="Vote score" className="votes">{votes}</h3>
+              <h3 aria-label="Vote score" className="votes">
+                {votes}
+              </h3>
             </div>
           </div>
         </div>
@@ -72,8 +82,7 @@ const IndividualArticle = ({userId}) => {
           </div>
         </div>
         <p className="article-body">{article.article[0].body}</p>
-        <Comments article_id={article_id} userId={userId}/>
-
+        <Comments article_id={article_id} userId={userId} />
       </section>
     );
 };

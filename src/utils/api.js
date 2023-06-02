@@ -4,8 +4,9 @@ const news = axios.create({
   baseURL: "https://news-project-g3uj.onrender.com/api",
 });
 
-const getArticles = async () => {
-  const { data } = await news.get("/articles");
+const getArticles = async (queryString) => {
+
+  const { data } = await news.get(`/articles${queryString}`);
   return data;
 };
 
@@ -48,9 +49,9 @@ const getTopics = async () => {
   }
 };
 
-const getArticlesByTopic = async (topic) => {
+const getArticlesByTopic = async (topic, queryString) => {
   try {
-    const { data } = await news.get(`/articles?topic=${topic}`);
+    const { data } = await news.get(`/articles?topic=${topic}&${queryString}`);
     return data;
   } catch (error) {
     console.log(error);
