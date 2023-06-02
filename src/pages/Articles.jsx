@@ -7,9 +7,9 @@ import "../Articles.css";
 
 const Articles = () => {
   const [articles, setArticles] = useState([{}]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [sort, setSort] = useState("");
-  const [ascDesc, setAscDesc] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [sort, setSort] = useState("created_at");
+  const [ascDesc, setAscDesc] = useState("desc");
   const [queryString, setQueryString] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -25,6 +25,7 @@ const Articles = () => {
 
   
   useEffect(() => {
+    setIsLoading(true);
     setSearchParams(queryString);
     const fetchArticles = async () => {
       const response = await getArticles(queryString);

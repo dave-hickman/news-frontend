@@ -11,6 +11,7 @@ const ArticleSummary = ({ article }) => {
       <Link to={`/articles/${article.article_id}`}>
       <h3 className="article-card-text">Comments: {article.comment_count}</h3>
       <h3 className="article-card-text">Votes: {article.votes}</h3>
+      <h3 className="article-card-text">Topic: {article.topic}</h3>
         <img
           src={article.article_img_url}
           alt={`thumbnail for ${article.title}`}
