@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ArticleSummary from "../components/ArticleSummary";
 import Sort from "../components/Sort";
-import { getArticles } from "../utils";
+import { getArticles } from "../utils/api";
 import "../Articles.css";
 
 const Articles = () => {

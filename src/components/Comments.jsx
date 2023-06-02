@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getComments, postComment } from "../utils";
+import { getComments, postComment } from "../utils/api";
 import "../Comments.css";
 
 const Comments = ({ article_id, userId }) => {

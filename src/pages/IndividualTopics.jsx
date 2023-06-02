@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../IndividualTopics.css";
 import { useParams, Link } from "react-router-dom";
-import { getArticlesByTopic } from "../utils";
+import { getArticlesByTopic } from "../utils/api";
 
 const IndividualTopics = () => {
   const [articles, setArticles] = useState([{}]);
@@ -25,10 +25,13 @@ const IndividualTopics = () => {
       <section className="topic-articles-container">
         <h2 className="indiv-topic-header">{slug}</h2>
         {articles.map((article) => {
-            const date = new Date(article.created_at)
-            const formattedDate = date.toLocaleString('en-GB')
+          const date = new Date(article.created_at);
+          const formattedDate = date.toLocaleString("en-GB");
           return (
-            <Link key={article.article_id} to={`/articles/${article.article_id}`}>
+            <Link
+              key={article.article_id}
+              to={`/articles/${article.article_id}`}
+            >
               <article className="topic-article-container">
                 <h3 className="topic-article-title">{article.title}</h3>
                 <h4>By: {article.author}</h4>
