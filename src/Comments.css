@@ -32,3 +32,11 @@
 .comment-text{
     font-family: "hoss-round-wide", sans-serif;
 }
+
+.comment-button{
+    padding: .5em 1em;
+    margin: .5em 1em 0;
+    border: 1px solid;
+    border-radius: 10px;
+    font-family:  "hoss-round-wide", sans-serif;
+}

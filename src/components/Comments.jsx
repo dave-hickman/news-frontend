@@ -129,7 +129,7 @@ const Comments = ({ article_id, userId }) => {
               <p className="comment-text">{formattedDate}</p>
               <p className="comment-text">Likes:{comment.votes}</p>
               <p className="comment-text">{comment.body}</p>
-              <button
+              <button className="comment-button"
                 value={comment.comment_id}
                 onClick={handleDelete}
                 disabled={incorrectUser}
