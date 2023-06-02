@@ -29,3 +29,7 @@ img{
 .right-side{
     text-align: end;
 }
+
+.article-summary-image{
+    border: 2px solid rgb(36, 36, 36);
+}

@@ -22,7 +22,7 @@ const ArticleSummary = ({ article }) => {
         </div>
       </div>
       <Link to={`/articles/${article.article_id}`}>
-        <img
+        <img className="article-summary-image"
           src={article.article_img_url}
           alt={`thumbnail for ${article.title}`}
         />{" "}

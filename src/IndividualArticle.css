@@ -6,6 +6,7 @@
 
 .article-title {
   color: rgb(255, 249, 238);
+  margin-bottom: .5rem;
 }
 
 .author-and-votes-container{
