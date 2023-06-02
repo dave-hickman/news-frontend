@@ -6,20 +6,26 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import "../IndividualArticle.css";
 
-const IndividualArticle = ({userId}) => {
+const IndividualArticle = ({ userId }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
   const [votes, setVotes] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
-  const [articleError, setArticleError] = useState("")
+  const [articleError, setArticleError] = useState("");
 
   useEffect(() => {
     const fetchSingleArticle = async () => {
       const response = await getSingleArticle(article_id);
-      setArticle(response);
-      setIsLoading(false);
-      setVotes(response.article[0].votes);
+      console.log(response.response.status)
+      if (response.response.status === 404) {
+        setIsLoading(false)
+        setArticleError("Article not found");
+      } else {
+        setArticle(response.data);
+        setIsLoading(false);
+        setVotes(response.data.article[0].votes);
+      }
     };
     fetchSingleArticle();
   }, []);
@@ -39,6 +45,7 @@ const IndividualArticle = ({userId}) => {
 
   if (isLoading === true) {
     return <p>Loading...</p>;
+  } else if (articleError) { return <h2 className="article-title">Article not found!</h2>
   } else
     return (
       <section className="article-container">
@@ -47,14 +54,24 @@ const IndividualArticle = ({userId}) => {
         <div className="author-and-votes-container">
           <h3 className="author">{article.article[0].author}</h3>
           <div className="votes-container">
-            <button aria-label="Upvote this post" className="vote-button vote-up" onClick={() => handleVote(1)}>
+            <button
+              aria-label="Upvote this post"
+              className="vote-button vote-up"
+              onClick={() => handleVote(1)}
+            >
               <ThumbUpOffAltIcon className="thumbs" />
             </button>
-            <button aria-label="Downvote this post" className="vote-button" onClick={() => handleVote(-1)}>
+            <button
+              aria-label="Downvote this post"
+              className="vote-button"
+              onClick={() => handleVote(-1)}
+            >
               <ThumbDownOffAltIcon className="thumbs" />
             </button>
             <div className="vote-number-container">
-              <h3 aria-label="Vote score" className="votes">{votes}</h3>
+              <h3 aria-label="Vote score" className="votes">
+                {votes}
+              </h3>
             </div>
           </div>
         </div>
@@ -74,8 +91,7 @@ const IndividualArticle = ({userId}) => {
           </div>
         </div>
         <p className="article-body">{article.article[0].body}</p>
-        <Comments article_id={article_id} userId={userId}/>
-
+        <Comments article_id={article_id} userId={userId} />
       </section>
     );
 };
