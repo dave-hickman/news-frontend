@@ -24,7 +24,6 @@ const Articles = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     const fetchArticles = async () => {
       const response = await getArticles(queryString);
       setArticles(response.articles);
