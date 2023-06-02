@@ -113,7 +113,7 @@ const Comments = ({ article_id, userId }) => {
               disabled={formDisabled}
             ></textarea>
             <p>{inputError}</p>
-            <button disabled={formDisabled}>Submit</button>
+            <button className="comment-button" disabled={formDisabled}>Submit</button>
             <p>{submitStatus}</p>
           </form>
         </article>
