@@ -44,7 +44,8 @@
 
 textarea{
     font-family: "hoss-round-wide", sans-serif;
-    min-width: 100%;
+    min-width: 80%;
+    padding: .2em;
 }
 
 form{
