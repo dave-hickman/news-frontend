@@ -1,3 +1,5 @@
+import "../Sort.css"
+
 const Sort = ({ setSort, setAscDesc }) => {
   const handleSortChange = (e) => {
     setSort(e.target.value);
@@ -8,15 +10,15 @@ const Sort = ({ setSort, setAscDesc }) => {
   };
 
   return (
-    <section>
-      <select onChange={handleSortChange}>
+    <section className="sort-container">
+      <select className="sort" onChange={handleSortChange}>
         <option>Sort by</option>
         <option value="created_at">Date</option>
         <option value="comment_count">Comment Count</option>
         <option value="votes">Votes</option>
         <option value="topic">Topic</option>
       </select>
-      <select onChange={handleOrderChange}>
+      <select className="order" onChange={handleOrderChange}>
         <option>Order by</option>
         <option value="desc">Descending</option>
         <option value="asc">Ascending</option>
