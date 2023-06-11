@@ -3,11 +3,14 @@
     max-width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 0 2em;
 }
 
 .indiv-topic-header{
     color: rgb(255, 249, 238);
     font-size: 3rem;
+    margin: 0 auto .2em auto;
+    text-align: center;
 }
 
 
@@ -30,11 +33,6 @@
     color: black;
 }
 
-.sort-container{
-    width: 100%;
-    margin: .2rem;
-    height: 20px;
-}
 
 img{
     margin: 1em 0 0;

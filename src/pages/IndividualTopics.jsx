@@ -47,11 +47,11 @@ const IndividualTopics = ({
     return <p>Loading...</p>;
   } else {
     return (
-      <section className="topic-articles-container">
-        <h2 className="indiv-topic-header">{slug}</h2>
+        <><h2 className="indiv-topic-header">{slug}</h2>
         <div className="sort-container">
           <Sort setSort={setSort} setAscDesc={setAscDesc} />
         </div>
+      <section className="topic-articles-container">
         {articles.map((article) => {
           const date = new Date(article.created_at);
           const formattedDate = date.toLocaleString("en-GB");
@@ -82,6 +82,7 @@ const IndividualTopics = ({
           );
         })}
       </section>
+      </>
     );
   }
 };

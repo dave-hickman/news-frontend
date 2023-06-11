@@ -1,17 +1,28 @@
 .sort-container{
     display: flex;
     justify-content: start;
-    
+    gap: 2em;
+    height: 20px;
 }
 
 .sort, .order{
     border: none;
     background-color: rgb(36, 36, 36);
     color:  rgb(255, 249, 238);
-    padding: .5em 1em;
+    padding: .5em 0em;
     margin: -.5rem .5rem -1rem 0;
-    width: 30%;
+    width: 8em;
     font-family: "hoss-round-wide", sans-serif;
     
 }
 
+@media (min-width: 900px){
+    .sort-container{
+        margin: 0 2%;
+    }
+}
+@media (min-width: 1600px){
+    .sort-container{
+        margin: 0 4%;
+    }
+}
