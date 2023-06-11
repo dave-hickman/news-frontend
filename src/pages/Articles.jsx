@@ -5,7 +5,14 @@ import Sort from "../components/Sort";
 import { getArticles } from "../utils/api";
 import "../Articles.css";
 
-const Articles = ({queryString, setQueryString, setSort, sort, setAscDesc, ascDesc}) => {
+const Articles = ({
+  queryString,
+  setQueryString,
+  setSort,
+  sort,
+  setAscDesc,
+  ascDesc,
+}) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
@@ -20,7 +27,6 @@ const Articles = ({queryString, setQueryString, setSort, sort, setAscDesc, ascDe
     } else setQueryString("");
   };
 
-  
   useEffect(() => {
     setIsLoading(true);
     setSearchParams(queryString);
@@ -43,9 +49,13 @@ const Articles = ({queryString, setQueryString, setSort, sort, setAscDesc, ascDe
     return (
       <main>
         <Sort setSort={setSort} setAscDesc={setAscDesc} />
-        {articles.map((article) => {
-          return <ArticleSummary key={article.article_id} article={article} />;
-        })}
+        <section className="articles-container">
+          {articles.map((article) => {
+            return (
+              <ArticleSummary key={article.article_id} article={article} />
+            );
+          })}
+        </section>
       </main>
     );
   }
