@@ -28,4 +28,5 @@ h3{
     max-width: 100%;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 0 2em;
 }
