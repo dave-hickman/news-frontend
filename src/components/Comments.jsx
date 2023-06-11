@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getComments, postComment, deleteComments } from "../utils";
+import { getComments, postComment, deleteComments } from "../utils/api";
 import "../Comments.css";
 
 const Comments = ({ article_id, userId }) => {
@@ -51,6 +51,7 @@ const Comments = ({ article_id, userId }) => {
     if (response.request.status !== 204) {
       setDeleteError("Issue with deleting comments, please try again later");
     } else {
+      setDeleteError("");
       setComments((currentComments) => {
         setDeleteConfirmation("Comment deleted");
         const isDeletedComment = (element) => element.comment_id === Number(e.target.value)

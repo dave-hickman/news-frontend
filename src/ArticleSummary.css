@@ -2,7 +2,6 @@
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 2rem 0;
     padding: 1em;
     border: 3px solid rgb(255, 249, 238);
@@ -12,9 +11,25 @@
 }
 
 img{
-    /* padding: 1em 0; */
     margin: 1em 0 0;
     max-width: 100%;
     border: 2px solid rgb(255, 249, 238);
     border-radius: 10px;
+}
+
+.article-card-text{
+    color: rgb(36, 36, 36);
+}
+
+.article-card-sub-info{
+    display:flex;
+    justify-content: space-between;
+}
+
+.right-side{
+    text-align: end;
+}
+
+.article-summary-image{
+    border: 2px solid rgb(36, 36, 36);
 }
