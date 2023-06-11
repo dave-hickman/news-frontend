@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTopics } from "../utils/api";
 import TopicSummary from "../components/TopicSummary";
+import "../Topics.css"
 
 const Topics = () => {
   const [topics, setTopics] = useState([]);
@@ -23,9 +24,9 @@ const Topics = () => {
     return <p>Loading...</p>;
   } else
     return (
-      <>
+      <section className="topics-body">
         <TopicSummary topics={topics} />
-      </>
+      </section>
     );
 };
 

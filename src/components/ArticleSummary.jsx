@@ -4,6 +4,7 @@ import "../ArticleSummary.css";
 const ArticleSummary = ({ article }) => {
   return (
     <section className="article-card">
+      <div className="title-subtext-wrapper">
       <Link to={`/articles/${article.article_id}`}>
         <h2>{article.title}</h2>
       </Link>
@@ -20,6 +21,7 @@ const ArticleSummary = ({ article }) => {
             <h3 className="article-card-text">Topic: {article.topic}</h3>
           </Link>
         </div>
+      </div>
       </div>
       <Link to={`/articles/${article.article_id}`}>
         <img className="article-summary-image"

@@ -47,11 +47,11 @@ const IndividualTopics = ({
     return <p>Loading...</p>;
   } else {
     return (
-      <section className="topic-articles-container">
-        <h2 className="indiv-topic-header">{slug}</h2>
+        <><h2 className="indiv-topic-header">{slug}</h2>
         <div className="sort-container">
           <Sort setSort={setSort} setAscDesc={setAscDesc} />
         </div>
+      <section className="topic-articles-container">
         {articles.map((article) => {
           const date = new Date(article.created_at);
           const formattedDate = date.toLocaleString("en-GB");
@@ -62,14 +62,27 @@ const IndividualTopics = ({
             >
               <article className="topic-article-container">
                 <h3 className="topic-article-title">{article.title}</h3>
-                <h4>By: {article.author}</h4>
-                <h4>{formattedDate}</h4>
+                <div className="article-card-sub-info">
+                  <div className="sub-info-separator">
+                    <h4>By: {article.author}</h4>
+                    <h4 className="article-card-text">
+                      Comments: {article.comment_count}
+                    </h4>
+                  </div>
+                  <div className="sub-info-seperator right-side">
+                    <h4 className="article-card-text">
+                      Votes: {article.votes}
+                    </h4>
+                    <h4>{formattedDate}</h4>
+                  </div>
+                </div>
                 <img src={article.article_img_url} />
               </article>
             </Link>
           );
         })}
       </section>
+      </>
     );
   }
 };

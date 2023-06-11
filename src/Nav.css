@@ -20,3 +20,16 @@ p{
 .nav-headers{
     color: rgb(36, 36, 36);
 }
+
+@media (min-width: 900px) {
+    nav{
+        padding: 1em 3%;
+    }
+
+}
+@media (min-width: 1600px) {
+    nav{
+        padding: 1em 12%;
+    }
+
+}
