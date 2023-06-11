@@ -59,4 +59,14 @@ const getArticlesByTopic = async (topic, queryString) => {
   }
 };
 
-export { getArticles, getSingleArticle, getComments, patchArticle, postComment, getTopics, getArticlesByTopic };
+const deleteComments = async(comment_id) => {
+  try{
+    const response = await news.delete(`/comments/${comment_id}`);
+    return response;
+  } catch (error) {
+    console.log(error)
+    return error;
+  }
+}
+
+export { getArticles, getSingleArticle, getComments, patchArticle, postComment, getTopics, getArticlesByTopic, deleteComments };

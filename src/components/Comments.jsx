@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getComments, postComment } from "../utils/api";
+import { getComments, postComment, deleteComments } from "../utils/api";
 import "../Comments.css";
 
 const Comments = ({ article_id, userId }) => {
@@ -9,6 +9,9 @@ const Comments = ({ article_id, userId }) => {
   const [inputError, setInputError] = useState("");
   const [submitStatus, setSubmitStatus] = useState("");
   const [formDisabled, setFormDisabled] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
+  const [deleteConfirmation, setDeleteConfirmation] = useState("")
+
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -22,6 +25,8 @@ const Comments = ({ article_id, userId }) => {
   const handleChange = (e) => {
     setNewComment(e.target.value);
   };
+
+
 
   const addComment = async () => {
     const newPost = { username: userId, body: newComment };
@@ -39,6 +44,23 @@ const Comments = ({ article_id, userId }) => {
     setNewComment("");
     setFormDisabled(false);
     return response.data.comment;
+  };
+
+  const handleDelete = async (e) => {
+    const response = await deleteComments(e.target.value);
+    if (response.request.status !== 204) {
+      setDeleteError("Issue with deleting comments, please try again later");
+    } else {
+      setDeleteError("");
+      setComments((currentComments) => {
+        setDeleteConfirmation("Comment deleted");
+        const isDeletedComment = (element) => element.comment_id === Number(e.target.value)
+        const deletedIndex = currentComments.findIndex(isDeletedComment)
+        const commentsCopy = [...currentComments];
+        commentsCopy.splice(deletedIndex, 1)
+        return commentsCopy;
+      });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -91,13 +113,15 @@ const Comments = ({ article_id, userId }) => {
               disabled={formDisabled}
             ></textarea>
             <p>{inputError}</p>
-            <button disabled={formDisabled}>Submit</button>
+            <button className="comment-button" disabled={formDisabled}>Submit</button>
             <p>{submitStatus}</p>
           </form>
         </article>
+        <p>{deleteConfirmation}</p>
         {comments.map((comment) => {
           const date = new Date(comment.created_at);
           const formattedDate = date.toLocaleString("en-GB");
+          const incorrectUser = comment.author !== userId;
 
           return (
             <article className="comment-card" key={comment.comment_id}>
@@ -105,6 +129,14 @@ const Comments = ({ article_id, userId }) => {
               <p className="comment-text">{formattedDate}</p>
               <p className="comment-text">Likes:{comment.votes}</p>
               <p className="comment-text">{comment.body}</p>
+              <button className="comment-button"
+                value={comment.comment_id}
+                onClick={handleDelete}
+                disabled={incorrectUser}
+              >
+                Delete Comment
+              </button>
+              <p>{deleteError}</p>
             </article>
           );
         })}
