@@ -24,7 +24,7 @@ You can find my back end repo [here](https://github.com/dave-hickman/news_projec
 To run this project locally, you will need to fork this repo or fork as follows:
 ```
 git clone https://github.com/dave-hickman/news-frontend
-cd portfolio
+cd news-frontend
 ```
 Once in the project directory, run the following command to install the required dependencies for the project and start the app:
 
